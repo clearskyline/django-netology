@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ dish }}</title>
+</head>
+<body>
+<h1>{{ dish }}</h1>
+<br>
+<h3>Number of servings: {{ servings }}</h3>
+<br>
+<h2>Ingredients:</h2>
+<br>
+{% for key, value in recipe.items %}
+<h3>{{key}}: {{value}}</h3>
+{% endfor %}
+<br>
+<a href="{% url 'landing_page' %}"><h3><button>Go back to landing page</button></h3></a>
+</body>
+</html>

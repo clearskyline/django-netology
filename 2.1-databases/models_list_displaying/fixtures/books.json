@@ -1,0 +1,74 @@
+[
+  {
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+      "name": "Война и мир",
+      "author": "Лев Толстой",
+      "pub_date": "2018-02-05"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "name": "1984",
+      "author": "Джордж Оруэл",
+      "pub_date": "2016-12-06"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "name": "К востоку от рая",
+      "author": "Джон Стейнбек",
+      "pub_date": "2015-11-01"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+      "name": "Сестра Керри",
+      "author": "Теодор Драйзер",
+      "pub_date": "2013-07-15"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 5,
+    "fields": {
+      "name": "Евгений Онегин",
+      "author": "Александр Пушкин",
+      "pub_date": "2018-04-27"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 6,
+    "fields": {
+      "name": "Герой нашего времени",
+      "author": "Михаил Лермонтов",
+      "pub_date": "2018-04-27"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 7,
+    "fields": {
+      "name": "Дворянское гнездо",
+      "author": "Иван Тургенев",
+      "pub_date": "2013-07-15"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 8,
+    "fields": {
+      "name": "Мадам Бовари",
+      "author": "Гюстав Флобер",
+      "pub_date": "2015-11-01"
+    }
+  }
+]

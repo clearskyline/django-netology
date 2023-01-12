@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Working directory</title>
+</head>
+<body>
+    <h1>Contents of working directory</h1>
+    <br>
+    {%  for dl in direct_list %}
+        <h3>{{ dl }}</h3>
+    {% endfor %}
+    <br>
+    <a href="{% url 'home' %}"><button>Go back to landing page</button></a>
+</body>
+</html>

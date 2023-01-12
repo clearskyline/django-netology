@@ -1,0 +1,168 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api
+
+# получение объявлений
+GET {{baseUrl}}/advertisements/
+Content-Type: application/json
+# non-author (published only):
+# Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+# author (also unpublished)::
+# Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# token not required
+
+###
+
+# создание объявления
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+# author:
+Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# admin:
+# Authorization: Token 0f90e52a3358d615ac06dfcaf6b5f577f2a38996
+# token required
+
+{
+  "title": "Шкаф IKEA",
+  "description": "Срочно",
+  "published": "True",
+  "status": "CLOSED"
+}
+
+
+###
+
+# удаление объявления
+DELETE {{baseUrl}}/advertisements/42/
+# creator:
+# Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# non-creator:
+# Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+# admin:
+Authorization: Token 0f90e52a3358d615ac06dfcaf6b5f577f2a38996
+# token required
+
+###
+
+# попытка поменять объявление
+PATCH {{baseUrl}}/advertisements/23/
+Content-Type: application/json
+# creator:
+Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# non-creator:
+# Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+# admin:
+# Authorization: Token 0f90e52a3358d615ac06dfcaf6b5f577f2a38996
+# token required
+
+{
+  "status": "OPEN"
+}
+
+###
+
+# фильтрация по статусу
+GET {{baseUrl}}/advertisements/?status=closeD
+Content-Type: application/json
+# у пользователя не больше 10 открытых объявлений
+# author (also unpublished):
+Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# non-author:
+# Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+
+###
+
+# фильтрация по создателю
+GET {{baseUrl}}/advertisements/?creator=2
+Content-Type: application/json
+# author (also unpublished):
+Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# non-author:
+# Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+
+
+###
+
+# фильтрация по дате
+GET {{baseUrl}}/advertisements/?created_at_after=1900-10-01
+# GET {{baseUrl}}/advertisements/?created_at_before=2900-10-01
+Content-Type: application/json
+# author (also unpublished):
+# Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# non-author:
+Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+
+
+###
+
+# попытка поменять объявление администратором
+PATCH {{baseUrl}}/advertisements/32/
+Content-Type: application/json
+Authorization: Token 0f90e52a3358d615ac06dfcaf6b5f577f2a38996
+
+{
+  "status": "OPEN"
+}
+
+
+###
+
+# попытка удалить объявление администратором
+DELETE {{baseUrl}}/advertisements/32/
+Authorization: Token 0f90e52a3358d615ac06dfcaf6b5f577f2a38996
+
+
+###
+
+# попытка добавить/удалить объявление в избранное (автор)
+PATCH {{baseUrl}}/advertisements/update-fav/24/
+Content-Type: application/json
+# author:
+Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+
+{
+  "add to favourites": "Add/Remove"
+}
+
+
+###
+
+# попытка добавить/удалить объявление в избранное (не автор)
+PATCH {{baseUrl}}/advertisements/update-fav/24/
+Content-Type: application/json
+# non-author
+Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+
+{
+  "add to favourites": "Add/Remove"
+}
+
+
+
+###
+
+# просмотр объявлений, добавленных в избранное
+GET {{baseUrl}}/my-favs/
+Content-Type: application/json
+# Zero result:
+# Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# Positive result:
+Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+
+###
+
+# публикация/отмена публикации объявления автором
+PATCH {{baseUrl}}/advertisements/23/
+Content-Type: application/json
+# author:
+Authorization: Token b084d47494efd9506fc3a64aac8eb68ac61af2c5
+# Non-author:
+# Authorization: Token b22809c5834a1a4df99e3d8bdc601e274d40d641
+# Admin:
+# Authorization: Token 0f90e52a3358d615ac06dfcaf6b5f577f2a38996
+
+{
+  # "published": "False"
+  "published": "True"
+}
+

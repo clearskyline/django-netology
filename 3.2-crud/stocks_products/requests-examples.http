@@ -1,0 +1,184 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api/v1
+
+###
+
+
+# создание продукта
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Отличные помидоры",
+  "description": "Возможно, самые лучшие помидоры на рынке"
+}
+
+###
+
+# получение продуктов
+GET {{baseUrl}}/products/?o=title
+Content-Type: application/json
+
+###
+
+
+# поиск продуктов
+GET {{baseUrl}}/products/?s=Пом
+Content-Type: application/json
+
+###
+
+# обновление продукта
+PATCH {{baseUrl}}/products/19/
+Content-Type: application/json
+
+{
+  "description": "Сочные и ароматные помидоры"
+}
+
+###
+
+# удаление продукта
+DELETE {{baseUrl}}/products/19/
+Content-Type: application/json
+
+###
+
+# список складов
+GET {{baseUrl}}/stocks/?o=-address&page=1
+Content-Type: application/json
+
+###
+
+# удаление склада
+DELETE {{baseUrl}}/stocks/50/
+Content-Type: application/json
+
+###
+
+# создание склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Сортировка",
+  "positions": [
+    {
+      "product": 22,
+      "quantity": 250,
+      "price": 120.50
+    },
+    {
+      "product": 21,
+      "quantity": 100,
+      "price": 180
+    }
+  ]
+}
+
+###
+
+# обновляем записи на складе
+PATCH {{baseUrl}}/stocks/51/
+Content-Type: application/json
+
+{
+  "positions": [
+    {
+      "product": 13,
+      "quantity": 100,
+      "price": 1200.80
+    },
+    {
+      "product": 15,
+      "quantity": 11,
+      "price": 20
+    }
+  ]
+}
+
+###
+
+
+# поиск склада по адресу
+GET {{baseUrl}}/stocks/?s=Сортиров
+Content-Type: application/json
+
+###
+
+# поиск продуктов по названию и описанию
+GET {{baseUrl}}/products/?s=Tabl
+Content-Type: application/json
+
+
+###
+
+# поиск складов, где есть определенный продукт
+GET {{baseUrl}}/stocks/?products=13
+Content-Type: application/json
+
+
+###
+
+# поиск складов, где есть определенный продукт
+GET {{baseUrl}}/stocks/?search=IKEA
+Content-Type: application/json
+
+
+###
+
+# проверка цены/количества продуктов
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Сортировка-2",
+  "positions": [
+    {
+      "product": 15,
+      "quantity": 0,
+      "price": 10
+    },
+    {
+      "product": 16,
+      "quantity": 10,
+      "price": 10
+    }
+  ]
+}
+
+
+###
+
+# проверка названия продукта
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "NN",
+  "description": "Возможно, самые лучшие помидоры на рынке"
+}
+
+
+###
+
+# проверка названия склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "RR",
+  "positions": [
+    {
+      "product": 15,
+      "quantity": 250,
+      "price": 120.50
+    },
+    {
+      "product": 16,
+      "quantity": 100,
+      "price": 180
+    }
+  ]
+}
